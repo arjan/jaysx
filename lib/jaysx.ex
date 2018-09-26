@@ -49,6 +49,23 @@ defmodule Jaysx do
     end
   end
 
+  @doc """
+  Convenience function to convert an evaluated JSX tree to a HTML
+  string. Pass `raw: true` as option to return `iodata()`, which is
+  more efficient.
+  """
+  def to_html({_, _, _} = elem, opts \\ [raw: false]) do
+    iolist = :jaysx_parse.to_html(elem)
+
+    case opts[:raw] do
+      true ->
+        iolist
+
+      false ->
+        IO.iodata_to_binary(iolist)
+    end
+  end
+
   defp sigil_J_str(string) do
     :jaysx_parse.parse(string)
     |> parse_jsx()

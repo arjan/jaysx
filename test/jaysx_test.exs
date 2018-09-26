@@ -21,8 +21,16 @@ defmodule JaysxTest do
   end
 
   test "defjsx generates functions" do
-    assert {"header", _, _} = elem = greeting("Arjan")
+    assert {"header", _, _} = greeting("Arjan")
+  end
 
-    assert "<header " <> _ = :jaysx_parse.to_html(elem) |> IO.iodata_to_binary()
+  defjsx button(label) do
+    ~J"""
+    <button>{label}</button>
+    """
+  end
+
+  test "to_html" do
+    assert "<button>Click me</button>" = button("Click me") |> Jaysx.to_html()
   end
 end
