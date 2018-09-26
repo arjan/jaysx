@@ -27,7 +27,11 @@ The project uses the HTML parser from the
 adapted to allow for the `{}` syntax that JSX provides to embed
 expressions inside the JSX element tree.
 
+### So… how is this different from an EEX template?
 
+EEX returns always a plain, rendered string, whereas JSX returns a DOM tree
+structure which can be rendered to a string, if needed. The DOM tree
+can also be used for fancier stuff like React-like DOM diffing.
 
 
 ## Installation
